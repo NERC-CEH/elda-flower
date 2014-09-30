@@ -37,8 +37,8 @@ spec:minimal a api:API
 	; api:endpoint 
 		spec:collections
 	; api:variable [api:name "_exceptionIfEmpty" ; api:value "no"]
-	; api:variable [api:name "_resourceRoot"     ; api:value "http://localhost:8080/assets"]
-	; api:variable [api:name "_velocityRoot"     ; api:value "http://localhost:8080/assets/vm"]
+	; api:variable [api:name "_resourceRoot"     ; api:value "http://localhost:8080/lda-assets"]
+	; api:variable [api:name "_velocityRoot"     ; api:value "http://localhost:8080/lda-assets/vm"]
 	.
 	
 spec:htmlFormatter a elda:VelocityFormatter
