@@ -1,0 +1,18 @@
+this is a test template
+
+#foreach ( $item in $items )
+  $item.getLabel()	
+
+  <table>
+    #foreach( $prop in $item.getProperties())
+      <tr>
+        <td>$prop</td>
+        
+        #foreach( $value in $item.getValues($prop))
+          <td>$value</td>
+        #end
+      </tr>
+    #end
+  </table>
+
+#end
