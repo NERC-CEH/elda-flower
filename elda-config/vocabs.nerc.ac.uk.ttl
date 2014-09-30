@@ -3,7 +3,7 @@
 # This LDA description is a "getting started" configuration.
 # Replace all references to the SPARQL endpoint
 #
-#	http://education.data.gov.uk/sparql/education/query
+# http://education.data.gov.uk/sparql/education/query
 #
 # with your SPARQL endpoint of interest. Replace the value 'true'
 # for supportsNestedSelect with 'false' unless you know the endpoint
@@ -21,40 +21,40 @@
 # of that item.
 #
 
-@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix spec:	<http://localhost:8080/api-config#> .
-@prefix api:    <http://purl.org/linked-data/api/vocab#> .
-@prefix elda:   <http://www.epimorphics.com/vocabularies/lda#> .
-@prefix skos:   <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix spec: <http://localhost:8080/api-config#> .
+@prefix api:  <http://purl.org/linked-data/api/vocab#> .
+@prefix elda: <http://www.epimorphics.com/vocabularies/lda#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
 spec:minimal a api:API
-	; api:base "/"
-	; rdfs:label "a minimal demonstration API"
-	; api:sparqlEndpoint <http://vocab.nerc.ac.uk/sparql/sparql>
-	; api:defaultViewer api:labelledDescribeViewer
-	; api:defaultFormatter spec:htmlFormatter 
-	; api:viewer api:describeViewer, api:labelledDescribeViewer, api:basicViewer
-	; api:endpoint 
-		spec:collections
-	; api:variable [api:name "_exceptionIfEmpty" ; api:value "no"]
-	; api:variable [api:name "_resourceRoot"     ; api:value "http://localhost:8080/lda-assets"]
-	; api:variable [api:name "_velocityRoot"     ; api:value "http://localhost:8080/lda-assets/vm"]
-	.
-	
+  ; api:base "/"
+  ; rdfs:label "a minimal demonstration API"
+  ; api:sparqlEndpoint <http://vocab.nerc.ac.uk/sparql/sparql>
+  ; api:defaultViewer api:labelledDescribeViewer
+  ; api:defaultFormatter spec:htmlFormatter 
+  ; api:viewer api:describeViewer, api:labelledDescribeViewer, api:basicViewer
+  ; api:endpoint 
+      spec:collections
+  ; api:variable [api:name "_exceptionIfEmpty" ; api:value "no"]
+  ; api:variable [api:name "_resourceRoot"     ; api:value "/lda-assets/"]
+  ; api:variable [api:name "_velocityRoot"     ; api:value "/var/elda-flower/lda-assets/vm"]
+  .
+  
 spec:htmlFormatter a elda:VelocityFormatter
-	; api:name "html"
-	; elda:className "com.epimorphics.lda.renderers.VelocityRendererFactory"
-	; api:mimeType "text/html"
-        .
+  ; api:name "html"
+  ; elda:className "com.epimorphics.lda.renderers.VelocityRendererFactory"
+  ; api:mimeType "text/html"
+  .
 
 #
 # List 'collections' endpoint
 #
 spec:collections a api:ListEndpoint
-    ; api:name            	"collection" 
-    ; rdfs:comment        	"A generic listing endpoint for listing things based solely on URI based filter parameters"@en
-    ; api:uriTemplate		"/collection"
-    ; api:selector			[
+    ; api:name              "collection" 
+    ; rdfs:comment          "A generic listing endpoint for listing things based solely on URI based filter parameters"@en
+    ; api:uriTemplate   "/collection"
+    ; api:selector      [
         api:where "?item a skos:Collection.";
         api:orderBy "?label";
     ]

@@ -8,7 +8,7 @@ This projects aim is to create a simple, easy to use and good looking website wh
 
 ## Introduction
 
-The core parts of this repository are the directories __elda-config__ and __lda-assets__. These contain the configuration which is required by the _elda-common_ web application. The __lda-assets__ should be accessible from the root of a web application (something like http://www.mywebsite.com/lda-assets) and the __elda-config__ directory should be made available at __etc/elda/conf.d/{APP}__ where {APP} is the context in which the elda-common web application is deployed. For complete instructions on how to set up ELDA, please refer to [ELDA-ref][].
+The core parts of this repository are the directories __elda-config__ and __lda-assets__. These contain the configuration which is required by the _elda-common_ web application. The __lda-assets__ should be deployed to __/var/elda-flower/assets__ and made accessible from the root of the web server (something like http://www.mywebsite.com/lda-assets) and the __elda-config__ directory should be made available at __etc/elda/conf.d/{APP}__ where {APP} is the context in which the elda-common web application is deployed. For complete instructions on how to set up ELDA, please refer to [ELDA-ref][].
 
 ## Usage
 
@@ -49,8 +49,8 @@ The repository has been developed with elda common version _1.2.35_
 
 Christopher Johnson - cjohn@ceh.ac.uk
 
-[ELDA]:       http://epimorphics.github.io/elda/docs/E1.2.31/index.html
-[ELDA-ref]:   http://epimorphics.github.io/elda/docs/E1.2.31/reference.html
+[ELDA]:       http://epimorphics.github.io/elda/docs/E1.2.35/index.html
+[ELDA-ref]:   http://epimorphics.github.io/elda/docs/E1.2.35/reference.html
 [lda]:        http://code.google.com/p/linked-data-api/wiki/Specification
 [nerc-sparl]: http://vocab.nerc.ac.uk/sparql/
 [Vagrant]:    https://www.vagrantup.com/
