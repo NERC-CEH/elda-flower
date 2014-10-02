@@ -1,2 +1,5 @@
 # Ignore the vagrant box
 .vagrant
+
+# Ignore the NPM Install modules
+node_modules
