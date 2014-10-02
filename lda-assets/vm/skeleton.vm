@@ -1,0 +1,26 @@
+#*
+This is the skeleton template for elda-flower. All pages html representations
+should use include this skeleton and execute the skelton macro.
+
+This will ensure a consistent look and feel
+*#
+
+#macro(skeleton $title)
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>$title</title>
+      <link rel="stylesheet" type="text/css" href="/lda-assets/css/style.css" media="screen">
+    </head>
+    <body>
+      #parse("_nav-bar.vm")
+
+      <div class="container">
+        $!bodyContent
+      </div>
+    </body>
+  </html>
+#end

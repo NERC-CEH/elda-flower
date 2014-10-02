@@ -1,18 +1,22 @@
-this is a test template
+#*
+The following is the default Velocity template use by this elda instance for
+html representations.
+*#
 
-#foreach ( $item in $items )
-  $item.getLabel()	
+#parse("skeleton.vm")
 
-  <table>
-    #foreach( $prop in $item.getProperties())
-      <tr>
-        <td>$prop</td>
-        
-        #foreach( $value in $item.getValues($prop))
-          <td>$value</td>
-        #end
-      </tr>
-    #end
-  </table>
+#@skeleton("ELDA Page")
 
+  #foreach ( $item in $items )
+    <div class="collection">
+      <h2><a href="$item.getURI()">$item.getLabel()</a></h2>
+      #foreach( $prop in $item.getProperties())
+        <ul class="item-property $prop">
+          #foreach( $value in $item.getValues($prop))
+            <li>$value</li>
+          #end
+        </ul>
+      #end
+    </div>
+  #end
 #end

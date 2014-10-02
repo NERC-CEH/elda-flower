@@ -1,26 +1,7 @@
-# minimal operational config
-
-# This LDA description is a "getting started" configuration.
-# Replace all references to the SPARQL endpoint
+# This LDA description wraps the NERC Vocabulary SPARQL endpoint:
 #
-# http://education.data.gov.uk/sparql/education/query
+# http://vocab.nerc.ac.uk/sparql/sparql
 #
-# with your SPARQL endpoint of interest. Replace the value 'true'
-# for supportsNestedSelect with 'false' unless you know the endpoint
-# support's SPARQL 1.1's nested select (as eg any Fuseki does and the
-# education endpoint does).
-#
-# The /anything endpoint will display some (10) items from the SPARQL
-# endpoint that have an rdf:type property. 
-#
-# The /about?resource=URI endpoint will display information about the
-# resource with the given URI from that SPARQL endpoint.
-#
-# The /mentions?resource=URI will display information about 
-# resources that 'mention' URI, ie, are objects of some property 
-# of that item.
-#
-
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix spec: <http://localhost:8080/api-config#> .
 @prefix api:  <http://purl.org/linked-data/api/vocab#> .
@@ -39,6 +20,9 @@ spec:minimal a api:API
   ; api:variable [api:name "_exceptionIfEmpty" ; api:value "no"]
   ; api:variable [api:name "_resourceRoot"     ; api:value "/lda-assets/"]
   ; api:variable [api:name "_velocityRoot"     ; api:value "/var/elda-flower/lda-assets/vm"]
+  ; elda:rewriteResultURIs  [ 
+      elda:ifStarts "http://vocab.nerc.ac.uk"; elda:replaceStartBy "http://localhost:8080"
+  ]
   .
   
 spec:htmlFormatter a elda:VelocityFormatter
@@ -51,12 +35,13 @@ spec:htmlFormatter a elda:VelocityFormatter
 # List 'collections' endpoint
 #
 spec:collections a api:ListEndpoint
-    ; api:name              "collection" 
-    ; rdfs:comment          "A generic listing endpoint for listing things based solely on URI based filter parameters"@en
-    ; api:uriTemplate   "/collection"
-    ; api:selector      [
-        api:where "?item a skos:Collection.";
-        api:orderBy "?label";
+    ; api:name                "collection" 
+    ; rdfs:comment            "Lists the collections"@en
+    ; api:uriTemplate         "/collection"
+    ; api:defaultPageSize     20
+    ; api:selector            [
+        api:where "?item a skos:Collection."
+      ; api:orderBy "?label";
     ]
     ; api:exampleRequestPath  "/collection"
     .
