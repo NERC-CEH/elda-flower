@@ -16,7 +16,12 @@ spec:minimal a api:API
   ; api:defaultFormatter spec:htmlFormatter 
   ; api:viewer api:describeViewer, api:labelledDescribeViewer, api:basicViewer
   ; api:endpoint 
-      spec:collections
+    spec:collections,
+    spec:collection,
+    spec:schemes,
+    spec:scheme,
+    spec:concept
+  ; api:variable [api:name "base"              ; api:value "http://vocab.nerc.ac.uk"]
   ; api:variable [api:name "_exceptionIfEmpty" ; api:value "no"]
   ; api:variable [api:name "_resourceRoot"     ; api:value "/lda-assets/"]
   ; api:variable [api:name "_velocityRoot"     ; api:value "/var/elda-flower/lda-assets/vm"]
@@ -31,17 +36,43 @@ spec:htmlFormatter a elda:VelocityFormatter
   ; api:mimeType "text/html"
   .
 
-#
-# List 'collections' endpoint
-#
+# Endpoints
 spec:collections a api:ListEndpoint
-    ; api:name                "collection" 
-    ; rdfs:comment            "Lists the collections"@en
-    ; api:uriTemplate         "/collection"
-    ; api:defaultPageSize     20
-    ; api:selector            [
-        api:where "?item a skos:Collection."
-      ; api:orderBy "?label";
-    ]
-    ; api:exampleRequestPath  "/collection"
-    .
+  ; api:name                "collection" 
+  ; api:uriTemplate         "/collection"
+  ; api:defaultPageSize     20
+  ; api:selector            [
+      api:where "?item a skos:Collection."
+    ; api:orderBy "?label";
+  ]
+  ; api:exampleRequestPath  "/collection"
+  .
+
+spec:collection a api:ItemEndpoint
+  ; api:uriTemplate         "/collection/{vocabulary}/current/"
+  ; api:itemTemplate        "{base}/collection/{vocabulary}/current/"
+  ; api:exampleRequestPath  "/collection/P01/current/"
+  .
+
+spec:schemes a api:ListEndpoint
+  ; api:name "schemes"
+  ; api:uriTemplate         "/scheme"
+  ; api:defaultPageSize     20
+  ; api:selector            [
+      api:where "?item a skos:ConceptScheme."
+    ; api:orderBy "?label";
+  ]
+  ; api:exampleRequestPath  "/scheme"
+  .
+
+spec:scheme a api:ItemEndpoint
+  ; api:uriTemplate         "/scheme/{scheme}/current/"
+  ; api:itemTemplate        "{base}/scheme/{scheme}/current/"
+  ; api:exampleRequestPath  "/scheme/EMODNET_PEST/current/"
+  .
+
+spec:concept a api:ItemEndpoint
+  ; api:uriTemplate         "/collection/{vocabulary}/current/{concept}/"
+  ; api:itemTemplate        "{base}/collection/{vocabulary}/current/{concept}/"
+  ; api:exampleRequestPath  "/collection/A01/current/Emergency_Response_and_Disaster_Recovery/"
+  .
